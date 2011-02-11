@@ -1,7 +1,10 @@
 <?php slot('title', sprintf('Channel %s', $channel['name'])) ?>
 <?php use_helper('Date') ?>
 <?php use_javascript('jquery.js') ?>
+
+<?php if (count($messages)): ?>
 <?php use_javascript('/sfKoreroPlugin/js/sfKorero.js') ?>
+<?php endif; ?>
 
 <h3><?php echo $channel['name'] ?></h3>
 
@@ -45,4 +48,6 @@
 
 </table>
 
+<?php if (count($messages)): ?>
 <span id="korero-nojs"><hr />You do not have JavaScript enabled. Please refresh the page to check for new messages.</span>
+<?php endif; ?>

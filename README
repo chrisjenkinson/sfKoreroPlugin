@@ -1,0 +1,13 @@
+To install:
+
+1. Enable the plugin sfKoreroPlugin in config/ProjectConfiguration.class.php
+2. Enable the modules sfKoreroChannel and sfKoreroMessage in apps/frontend/config/settings.yml).
+3. Copy plugins/sfKoreroPlugin/data/fixtures/fixtures.yml.sample to your fixtures directory, naming and editing appropriately.
+4. Build all classes and load the sfKorero fixture into your database.
+5. Create two directories under frontend/modules, called sfKoreroChannel and sfKoreroMessage. In each create a subdirectory called config, and add a security.yml file containing:
+
+    all:
+      is_secure: true
+
+6. Add links to channel into your application.
+7. Enjoy!

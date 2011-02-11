@@ -42,5 +42,5 @@ $(document).ready(function()
 	setInterval(function()
 	{
 		update();
-	}, 10000);
+	}, 5000);
 });

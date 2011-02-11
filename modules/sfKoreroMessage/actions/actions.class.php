@@ -14,8 +14,6 @@ class sfKoreroMessageActions extends BasesfKoreroMessageActions
 {
 	public function executeCreate(sfWebRequest $request)
 	{
-		$message = $this->getRoute()->getObject();
-		
 		$this->form = new sfKoreroMessageForm();
 		
 		if (sfView::NONE !== $this->processForm($request, $this->form))
@@ -24,7 +22,7 @@ class sfKoreroMessageActions extends BasesfKoreroMessageActions
 			{
 				$this->getUser()->setFlash('error', 'You must enter a message!');
 			
-				$this->redirect('channel_show' , array('id' => $message->getChannelId()));
+				$this->redirect('channel_show' , array('id' => $this->message->getChannelId()));
 			}
 			
 			return sfView::ERROR;
@@ -44,18 +42,18 @@ class sfKoreroMessageActions extends BasesfKoreroMessageActions
 		{
 			$form->updateObject();
 			
-			$message = $form->getObject();
+			$this->message = $form->getObject();
 			
-			$message->setUserId($this->getUser()->getId());
+			$this->message->setUserId($this->getUser()->getId());
 			
-			$message->save();
+			$this->message->save();
 			
 			if (!$request->isXmlHttpRequest())
 			{
-				$this->redirect('channel_show', array('id' => $message->getChannelId()));
+				$this->redirect('channel_show', array('id' => $this->message->getChannelId()));
 			}
 			
-			return $this->renderPartial('sfKoreroChannel/list', array('messages' => array($message)));
+			return $this->renderPartial('sfKoreroChannel/list', array('messages' => array($this->message)));
 		}
 	}
 }
