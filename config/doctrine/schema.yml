@@ -1,0 +1,17 @@
+sfKoreroChannel:
+  actAs: [Sluggable]
+  columns:
+    id:          { type: integer, primary: true, autoincrement: true }
+    name:        { type: string(255), notnull: true, unique: true }
+    description: { type: string(1000) }
+
+sfKoreroMessage:
+  actAs: [Timestampable]
+  columns:
+    id:         { type: integer, primary: true, autoincrement: true }
+    channel_id: { type: integer, notnull: true }
+    user_id:    { type: integer, notnull: true }
+    message:    { type: string(1000), notnull: true }
+  relations:
+    sfKoreroChannel: { local: channel_id, foreign: id, onDelete: CASCADE }
+    sfGuardUser:     { local: user_id, foreign: id, onDelete: CASCADE }

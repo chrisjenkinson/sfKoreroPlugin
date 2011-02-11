@@ -1,0 +1,4 @@
+sfKoreroChannel:
+  channel_general:
+    name: General
+    description: General chat channel
