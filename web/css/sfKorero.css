@@ -1,0 +1,10 @@
+#korero-channel .overlay {
+	background-color: #fff;
+	opacity: 0.9;
+	border: 1px #ddd solid;
+	height: 100%;
+}
+
+#content .content {
+	width: 100%;
+}

@@ -21,7 +21,7 @@ class sfKoreroChannelActions extends BasesfKoreroChannelActions
 	{
 		$this->channel = $this->getRoute()->getObject();
 		
-		if ($request->isXmlHttpRequest())
+		if ($request->isXmlHttpRequest() && $request->getParameter('ajax'))
 		{
 			if ($request->getParameter('since'))
 			{
@@ -53,6 +53,7 @@ class sfKoreroChannelActions extends BasesfKoreroChannelActions
 			$message->setUserId($this->getUser()->getId());
 			
 			$this->form = new sfKoreroMessageForm($message);
+			$this->ajax = $request->isXmlHttpRequest();
 		}
 	}
 }

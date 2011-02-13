@@ -10,11 +10,11 @@
 
 <p><?php echo $channel['description']?></p>
 
-<table id="korero-message" class="span-18 last">
+<table id="korero-message" class="span-20 last">
 
 <tfoot>
 <tr>
-<td colspan="3">
+<td colspan="3" class="span-20">
 <?php include_partial('messageform', array('form' => $form)) ?>
 </td>
 </tr>
@@ -26,7 +26,7 @@
 <tr>
 <th class="span-3">Time</th>
 <th class="span-3">From</th>
-<th class="span-12 last">Message</th>
+<th class="span-14 last">Message</th>
 </tr>
 </thead>
 
@@ -48,6 +48,6 @@
 
 </table>
 
-<?php if (count($messages)): ?>
+<?php if (!$ajax && count($messages)): ?>
 <span id="korero-nojs"><hr />You do not have JavaScript enabled. Please refresh the page to check for new messages.</span>
 <?php endif; ?>
