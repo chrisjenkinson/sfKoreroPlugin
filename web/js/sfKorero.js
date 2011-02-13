@@ -154,4 +154,12 @@ $(document).ready(function()
 		
 		return false;
 	});
+	
+	$(window).blur(function(event)
+	{
+		if (_korero_open)
+		{
+			_close(event);
+		}
+	});
 });

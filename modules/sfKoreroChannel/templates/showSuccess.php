@@ -13,16 +13,17 @@
 <table id="korero-message" class="span-20 last">
 
 <tfoot>
-<tr>
-<td colspan="3" class="span-20">
-<?php include_partial('messageform', array('form' => $form)) ?>
-</td>
+
 </tr>
 </tfoot>
 
 <?php if (count($messages)): ?>
 
 <thead>
+<tr>
+<td colspan="3" class="span-20">
+<?php include_partial('messageform', array('form' => $form)) ?>
+</td>
 <tr>
 <th class="span-3">Time</th>
 <th class="span-3">From</th>
