@@ -1,13 +1,32 @@
 To install:
+-----------
 
 1. Enable the plugin sfKoreroPlugin in config/ProjectConfiguration.class.php
+
 2. Enable the modules sfKoreroChannel and sfKoreroMessage in apps/frontend/config/settings.yml).
+
 3. Copy plugins/sfKoreroPlugin/data/fixtures/fixtures.yml.sample to your fixtures directory, naming and editing appropriately.
+
 4. Build all classes and load the sfKorero fixture into your database.
-5. Create two directories under frontend/modules, called sfKoreroChannel and sfKoreroMessage. In each create a subdirectory called config, and add a security.yml file containing:
+
+5. Add <?php use_javascript('/sfKoreroPlugin/js/sfKorero.js') ?> to your layout file.
+
+6. If your modules are unsecure by default, create two directories under frontend/modules, called sfKoreroChannel and sfKoreroMessage. In each create a subdirectory called config, and add a security.yml file containing:
 
     all:
       is_secure: true
 
-6. Add links to channel into your application.
-7. Enjoy!
+7. Add links to channel into your application, with the class "korero" to open them in the current window, e.g.:
+
+    <?php echo link_to('General', 'channel/general', array('class' => 'korero')) ?>
+
+8. Enjoy!
+
+To administer:
+--------------
+
+1. To cut down on server requests, the chat window closes if the viewer changes to a different window. To disable this, change _close_on_blur to true in web/js/sfKorero.js.
+
+2. To change the frequency that new messages are checked for, change _update_interval in web/js/sfKorero.js. This is the number of milliseconds to wait per request.
+
+3. To change the maximum number of comments shown, change _comments_max in web/js/sfKorero.js.

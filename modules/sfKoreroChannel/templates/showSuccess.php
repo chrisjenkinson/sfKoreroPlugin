@@ -12,23 +12,24 @@
 
 <table id="korero-message" class="span-20 last">
 
-<tfoot>
-
-</tr>
-</tfoot>
-
-<?php if (count($messages)): ?>
-
 <thead>
-<tr>
-<td colspan="3" class="span-20">
-<?php include_partial('messageform', array('form' => $form)) ?>
-</td>
-<tr>
-<th class="span-3">Time</th>
-<th class="span-3">From</th>
-<th class="span-14 last">Message</th>
-</tr>
+	<tr>
+		<td colspan="3" class="span-20">
+		<?php include_partial('messageform', array('form' => $form)) ?>
+		</td>
+	</tr>
+	<?php if (!count($messages) || $ajax): ?>
+	<tr id="korero-nomessages">
+		<td colspan="3" class="span-20"><strong>No messages yet! Go ahead and say something.</strong></td>
+	</tr>
+	<?php endif; ?>
+	<?php if (count($messages) || $ajax): ?>
+	<tr id="korero-messageheader">
+		<th class="span-3">Time</th>
+		<th class="span-3">From</th>
+		<th class="span-14 last">Message</th>
+	</tr>
+	<?php endif; ?>
 </thead>
 
 <tbody>
@@ -37,15 +38,7 @@
 
 </tbody>
 
-<?php else: ?>
-
-<thead>
-<tr>
-	<td>No messages yet! Go ahead and say something.</td>
-</tr>
 </thead>
-
-<?php endif; ?>
 
 </table>
 
