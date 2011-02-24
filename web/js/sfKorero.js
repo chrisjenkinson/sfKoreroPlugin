@@ -33,6 +33,7 @@ $(document).ready(function()
 	
 	$("#content").height(_content_height_orig);
 	_korero_onpage = ($("#korero-message").length ? true : false);
+	$("#korero-nojs").remove();
 	
 	/**
 	 * Resizes the overlay 
