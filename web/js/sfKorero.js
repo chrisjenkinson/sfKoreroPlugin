@@ -14,7 +14,7 @@ $(document).ready(function()
 	var
 		_close_on_blur		= true,
 		_update_interval	= 5000,
-		_comments_max		= 20,
+		_comments_max		= 25,
 	
 	/*
 	 * Internal variables
@@ -31,7 +31,6 @@ $(document).ready(function()
 
 		_resize_overlay, _open, _close, _update, _remove_nomessages, _remove_messageheader, _show_messageheader, _remove_extra;
 	
-	$("#content").height(_content_height_orig);
 	_korero_onpage = ($("#korero-message").length ? true : false);
 	$("#korero-nojs").remove();
 	
@@ -44,17 +43,12 @@ $(document).ready(function()
 		_content_height = $("#content").outerHeight();
 		_channel_height = $("#korero-channel").outerHeight();
 		
-		_new_height = (_content_height > _channel_height ? _content_height : _channel_height);
-		
-		$("#korero-channel").height(_new_height);
-		
-		$("#content").animate({height: _new_height}, "fast", function()
+		if (_content_height < _channel_height)
 		{
-			$("#korero-overlay").fadeTo("fast", 0.85);
-			$("#content .content").height(_new_height);
-			
-			$("#korero-channel").height("auto");
-		});
+			$('#content').animate({height: _channel_height}, 'fast', function() {
+				$('#korero-overlay').fadeTo('fast', 0.85);
+			});
+		}
 	};
 	
 	/**
@@ -80,7 +74,6 @@ $(document).ready(function()
 		
 		$("#content").css({position: "relative"});
 			
-		$("#content .content").css({position: "absolute"});
 		$_korero_channel.css({position: "absolute"});
 		
 		$_korero_inner.html($_korero_loading);
@@ -98,6 +91,7 @@ $(document).ready(function()
 		$.get(_channel_href, function(data)
 		{
 			$("#korero-inner").html(data);
+			
 			$("#korero-inner").prepend($_korero_close);
 			_resize_overlay();
 			
@@ -130,12 +124,14 @@ $(document).ready(function()
 		clearInterval(_interval_id);
 	
 		$("#content .content").fadeTo("slow", 1);
-		$("#content .content").height("100%");
 		
 		$("#korero-channel").fadeOut("fast", function()
 		{
 			$(this).remove();
-			$("#content").animate({height: _content_height_orig}, "fast");
+			$("#content").animate({height: _content_height_orig}, "fast", function()
+			{
+				$('#content').css('height', '');
+			});
 		});
 	};
 	
