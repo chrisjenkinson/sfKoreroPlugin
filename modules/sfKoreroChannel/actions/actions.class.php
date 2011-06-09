@@ -32,7 +32,7 @@ class sfKoreroChannelActions extends BasesfKoreroChannelActions
 				$since = time() - 10;
 			}
 			
-			$messages = $this->channel->getMessages($since, $this->getUser()->getId());
+			$messages = $this->channel->getMessages($since, $this->getUser()->getGuardUser()->getId());
 			
 			if (!empty($messages))
 			{
@@ -50,7 +50,7 @@ class sfKoreroChannelActions extends BasesfKoreroChannelActions
 			$message = new sfKoreroMessage();
 			
 			$message->setChannelId($this->channel['id']);
-			$message->setUserId($this->getUser()->getId());
+			$message->setUserId($this->getUser()->getGuardUser()->getId());
 			
 			$this->form = new sfKoreroMessageForm($message);
 			$this->ajax = $request->isXmlHttpRequest();

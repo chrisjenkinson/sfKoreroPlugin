@@ -1,10 +1,8 @@
-#korero-channel .overlay {
-	background-color: #fff;
+.overlay {
+	background-color: #fafafa;
 	opacity: 0.9;
-	border: 1px #ddd solid;
-	height: 100%;
-}
-
-#content .content {
-	width: 100%;
+	border: 1px #666 solid;
+	
+	-moz-box-shadow: 2px 2px 11px #666;
+	-webkit-box-shadow: 2px 2px 11px #666;
 }

@@ -1,32 +1,48 @@
-To install:
------------
+sfKoreroPlugin
+==============
 
-1. Enable the plugin sfKoreroPlugin in config/ProjectConfiguration.class.php
+sfMaraePlugin has two external dependencies:
 
-2. Enable the modules sfKoreroChannel and sfKoreroMessage in apps/frontend/config/settings.yml).
+  * sfDoctrineGuardPlugin
+  * jQuery
 
-3. Copy plugins/sfKoreroPlugin/data/fixtures/fixtures.yml.sample to your fixtures directory, naming and editing appropriately.
+Please install and make sure you have both working before installing sfKoreroPlugin.
+  
+Installing sfKoreroPlugin
+-------------------------
 
-4. Build all classes and load the sfKorero fixture into your database.
+1.  Install sfKoreroPlugin into your `plugins` directory
 
-5. Add <?php use_javascript('/sfKoreroPlugin/js/sfKorero.js') ?> to your layout file.
+2.  Enable the plugin sfKoreroPlugin in `config/ProjectConfiguration.class.php`.
 
-6. If your modules are unsecure by default, create two directories under frontend/modules, called sfKoreroChannel and sfKoreroMessage. In each create a subdirectory called config, and add a security.yml file containing:
+3.  Enable the modules sfKoreroChannel and sfKoreroMessage in `apps/frontend/config/settings.yml`.
 
-    all:
-      is_secure: true
+4.  Copy `plugins/sfKoreroPlugin/data/fixtures/fixtures.yml.sample` to your fixtures directory, naming and editing appropriately.
 
-7. Add links to channel into your application, with the class "korero" to open them in the current window, e.g.:
+5.  Build all classes and load the sfKorero fixture into your database.
 
-    <?php echo link_to('General', 'channel/general', array('class' => 'korero')) ?>
+6.  Publish the sfKoreroPlugin web assets and link them into your layout via your preferred method (e.g. editing `apps/frontend/config/view.yml`):
 
-8. Enjoy!
+        symfony plugin:publish-assets
 
-To administer:
---------------
+7.  If your modules are unsecure by default, create two directories under frontend/modules, called sfKoreroChannel and sfKoreroMessage. In each create a subdirectory called config, and add a security.yml file containing:
 
-1. To cut down on server requests, the chat window closes if the viewer changes to a different window. To disable this, change _close_on_blur to true in web/js/sfKorero.js.
+        all:
+          is_secure: true
 
-2. To change the frequency that new messages are checked for, change _update_interval in web/js/sfKorero.js. This is the number of milliseconds to wait per request.
+8.  Add links to channel into your application. If you want the chat window to overlay your existing page, add a tag with ID "content" around the HTML you wish to fade, and a second tag with class "content" nested just inside.
 
-3. To change the maximum number of comments shown, change _comments_max in web/js/sfKorero.js.
+    An example link is:
+
+        <?php echo link_to('General', 'channel/general', array('class' => 'korero')) ?>
+
+9.  That's it! If you are still having problems please open an issue on GitHub.
+
+Administering sfKoreroPlugin
+----------------------------
+
+  * To cut down on server requests, the chat window closes if the viewer changes to a different window. To disable this, change `_close_on_blur` to `true` in `web/js/sfKorero.js`.
+
+  * To change the frequency that new messages are checked for, change `_update_interval` in `web/js/sfKorero.js`. This is the number of milliseconds to wait per request.
+
+  * To change the maximum number of comments shown, change `_comments_max` in `web/js/sfKorero.js`.
