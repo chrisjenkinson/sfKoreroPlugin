@@ -44,7 +44,7 @@ class sfKoreroMessageActions extends BasesfKoreroMessageActions
 			
 			$this->message = $form->getObject();
 			
-			$this->message->setUserId($this->getUser()->getId());
+			$this->message->setUserId($this->getUser()->getGuardUser()->getId());
 			
 			$this->message->save();
 			
