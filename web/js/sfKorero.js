@@ -29,7 +29,7 @@ $(document).ready(function()
 	
 		$_korero_channel, $_korero_overlay, $_korero_inner, $_korero_loading, $_korero_close,
 
-		_resize_overlay, _open, _close, _update, _remove_nomessages, _remove_messageheader, _show_messageheader, _remove_extra;
+		_resize_overlay, _open, _close, _update, _remove_nomessages, _remove_messageheader, _show_messageheader, _remove_extra, _last_message = "";
 	
 	_korero_onpage = ($("#korero-message").length ? true : false);
 	$("#korero-nojs").remove();
@@ -221,7 +221,19 @@ $(document).ready(function()
 			return false;
 		}
 		
+		if (_last_message == $("#korero-message form .text").val())
+		{
+			$("#korero-message form").removeClass('korero-messagebox-no-error').addClass('error');
+			$("#korero-message-error").text('You just wrote that!');
+			$("#korero-message form .text").val("");
+			return false;
+		}
+		
+		_last_message = $("#korero-message form .text").val();
+		
 		$("#korero-message form :submit").val("Saying...").attr("disabled", "disabled");
+		$("#korero-message form").addClass('korero-messagebox-no-error').removeClass('error');
+		$("#korero-message-error").text("");
 		
 		$.post($("#korero-message form").attr("action"), $("#korero-message form").serialize(), function(data)
 		{
